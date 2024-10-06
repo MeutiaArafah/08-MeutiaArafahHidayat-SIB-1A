@@ -6,10 +6,10 @@ import java.util.Scanner;
 public class Pemilihan2Percobaan208 {
 
     public static void main(String[] args) {
-        Scanner input08 = new Scanner (System.in);
+        Scanner input08 = new Scanner(System.in);
 
         int pilihan_menu, harga;
-        String member;
+        String member, qris;
         double diskon, total_bayar;
 
         // menampilkan menu
@@ -25,6 +25,8 @@ public class Pemilihan2Percobaan208 {
         input08.nextLine();
         System.out.print("Apakah punya member (y/n) ? = ");
         member = input08.nextLine();
+        System.out.print("Apakah pembayaran menggunakan QRIS (y/n) ? = ");
+        qris = input08.nextLine();
         System.out.println("_____________________________________");
 
         // struktur kondisi pertama -> pembeli memiliki member
@@ -35,47 +37,62 @@ public class Pemilihan2Percobaan208 {
                 harga = 14000;
                 System.out.println("Harga ricebowl = " + harga);
 
-            } else if (pilihan_menu == 2){
+            } else if (pilihan_menu == 2) {
                 harga = 3000;
                 System.out.println("Harga ice tea = " + harga);
 
-            } else if (pilihan_menu == 3){
+            } else if (pilihan_menu == 3) {
                 harga = 15000;
                 System.out.println("Harga bundling = " + harga);
 
-            }else{
+            } else {
                 System.out.println("Masukkan pilihan menu dengan benar");
                 return; // menghentikan eksekusi lebih lanjut jika pilihan salah
             }
 
-            // menghitung total bayar setelah diskon
-            total_bayar = harga - (harga * diskon);
-            System.out.println("Total bayar setelah diskon = " + total_bayar);
+            // pembayaran jika qris
+            if (qris.equalsIgnoreCase("y")) {
+                // menghitung total bayar setelah diskon
+                total_bayar = harga - (harga * diskon) - 1000;
+                System.out.println("Total bayar setelah diskon = " + total_bayar);
+            } else {
+                // menghitung total bayar setelah diskon
+                total_bayar = harga - (harga * diskon);
+                System.out.println("Total bayar setelah diskon = " + total_bayar);
+            }
+
         }
 
         // struktur kondisi kedua -> pembeli TIDAK memiliki member
-        else if(member.equalsIgnoreCase("n")){
+        else if (member.equalsIgnoreCase("n")) {
             if (pilihan_menu == 1) {
                 harga = 14000;
                 System.out.println("Harga ricebowl = " + harga);
 
-            } else if (pilihan_menu == 2){
+            } else if (pilihan_menu == 2) {
                 harga = 3000;
                 System.out.println("Harga ice tea = " + harga);
 
-            } else if (pilihan_menu == 3){
+            } else if (pilihan_menu == 3) {
                 harga = 15000;
                 System.out.println("Harga bundling = " + harga);
 
-            }else{
+            } else {
                 System.out.println("Masukkan pilihan menu dengan benar");
                 return; // menghentikan eksekusi lebih lanjut jika pilihan salah
             }
-            // menghitung total bayar 
-            System.out.println("Total bayar = " + harga);
-            
 
-        } else{
+            // pembayaran jika qris
+            if (qris.equalsIgnoreCase("y")) {
+                // menghitung total bayar setelah diskon
+                total_bayar = harga - 1000;
+                System.out.println("Total bayar = " + total_bayar);
+            } else {
+                // menghitung total bayar setelah diskon
+                System.out.println("Total bayar = " + harga);
+            }
+
+        } else {
             System.out.println("Member tidak valid");
         }
         System.out.println("_____________________________________");
