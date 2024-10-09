@@ -39,7 +39,7 @@ public class tokoBuku {
                 diskon = 0.05;
                 System.out.println("Total diskon anda : " + diskon + "%");
             } else {
-                System.out.println("Anda tidak mendapatkan diskon");
+                System.out.println("Maaf anda tidak mendapatkan diskon");
             }
         }
         {
