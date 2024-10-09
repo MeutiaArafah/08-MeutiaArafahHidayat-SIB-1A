@@ -15,7 +15,7 @@ public class tokoSepatu {
         merek = sc.nextLine();
         System.out.print("Masukkan kategori sepatu : ");
         kategori = sc.nextLine();
-        System.out.print("Masukkan ukuran : ");
+        System.out.print("Masukkan ukuran (36-44): ");
         ukuran = sc.nextInt();
 
         if (merek.equalsIgnoreCase("Converse")) {

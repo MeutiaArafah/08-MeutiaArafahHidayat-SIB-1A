@@ -21,29 +21,25 @@ public class tokoBuku {
             diskon = 0.10;
             if (jumlahBuku > 2) {
                 totalDiskon = diskon + 0.02;
-                System.out.println("Total diskon anda : " + totalDiskon + "%");
             } else {
-                System.out.println("Total diskon anda : " + diskon + "%");
+                totalDiskon = diskon + 0.0;
             }
+            System.out.println("Total diskon anda : " + (int) (totalDiskon * 100) + "%");
         } else if (jenisBuku.equalsIgnoreCase("novel")) {
             diskon = 0.07;
             if (jumlahBuku > 3) {
                 totalDiskon = diskon + 0.02;
-                System.out.println("Total diskon anda : " + totalDiskon + "%");
             } else {
                 totalDiskon = diskon + 0.01;
-                System.out.println("Total diskon anda : " + totalDiskon + "%");
             }
+            System.out.println("Total diskon anda : " + (int) (totalDiskon * 100) + "%");
         } else {
             if (jumlahBuku > 3) {
                 diskon = 0.05;
-                System.out.println("Total diskon anda : " + diskon + "%");
+                System.out.println("Total diskon anda : " + (int) (diskon * 100) + "%");
             } else {
                 System.out.println("Maaf anda tidak mendapatkan diskon");
             }
-        }
-        {
-
         }
     }
 }
