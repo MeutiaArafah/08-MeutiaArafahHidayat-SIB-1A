@@ -11,7 +11,7 @@ public class Square08 {
             for (int j = 0; j <= N; j++) {
                 System.out.print("*");
             }
-            System.out.println();
+            // System.out.println();
         }
     }
 }
