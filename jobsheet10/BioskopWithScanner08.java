@@ -19,10 +19,11 @@ public class BioskopWithScanner08 {
         while (true) {
             System.out.print("Silahkan pilih daftar menu: ");
             menu = sc.nextInt();
-            if (menu == 1) {
+            switch (menu) {
+                case 1:
                 System.out.print("Masukkan nama: ");
-                nama = sc.nextLine();
                 sc.nextLine();
+                nama = sc.nextLine();
                 System.out.print("Masukkan baris: ");
                 baris = sc.nextInt();
                 System.out.print("Masukkan kolom: ");
@@ -30,18 +31,24 @@ public class BioskopWithScanner08 {
                 sc.nextLine();
 
                 penonton[baris - 1][kolom - 1] = nama;
-            } else if (menu == 2) {
+                    break;
+
+                case 2:
                 for(int b = 0; b < penonton.length; b++){
                     for(int k = 0; k < penonton[b].length; k++ ){
                         if (penonton[b][k] != null) {
-                            System.out.println("Baris: "+ (b+1) + " Kolom: "+ (k+1) + " : " + penonton[b][k]);
-                        }
+                            System.out.println("- " + penonton[b][k] + " (baris: " + (b+1) + " kolom: " + (k+1) + ")");
+                        }   
                     }
                 }
-               
-            } else if (menu == 3) {
-                    break;
-                
+                break;
+
+                case 3:
+                System.out.println("Selesai");
+                break;
+            } 
+            if(menu == 3){
+                break;
             }
         }
     }
