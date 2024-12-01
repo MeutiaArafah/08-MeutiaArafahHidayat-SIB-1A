@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Kafe08 {
     // kalo ada void gabisa langsung di sout, harus dipanggil di void main
     public static void Menu(String namaPelanggan, boolean isMember, String kodePromo) {
@@ -10,7 +11,7 @@ public class Kafe08 {
             System.out.println("Selamat Anda mendapat diskon sebesar 50% !");
         } else if (kodePromo.equalsIgnoreCase("DISKON30")) {
             System.out.println("Selamat Anda mendapat diskon sebesar 30% !");
-        } else{
+        } else {
             System.out.println("Kode invalid");
         }
 
@@ -25,7 +26,22 @@ public class Kafe08 {
         System.out.println("Silakan pilih menu yang Anda inginkan.");
     }
 
+    public static int hitungTotalHarga(int pilihanMenu, int banyakItem){
+        int[] hargaItems = {15000, 20000, 220000, 12000, 10000, 180000};
+
+        int hargaTotal = hargaItems[pilihanMenu - 1] * banyakItem;
+        return hargaTotal;
+    }
+
     public static void main(String[] args) {
-        Menu("Andi", true, "DISKON50");
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\nMasukkan nomor menu yang ingin Anda pesan: ");
+        int pilihanMenu = sc.nextInt();
+        System.out.print("Masukkan jumlah item yang ingin dipesan: ");
+        int banyakItem = sc.nextInt();
+
+        int totalHarga = hitungTotalHarga(pilihanMenu, banyakItem);
+
+        System.out.println("Total harga untuk pesanan Anda: Rp " + totalHarga);
     }
 }
