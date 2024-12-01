@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Kafe08 {
     // kalo ada void gabisa langsung di sout, harus dipanggil di void main
     public static void Menu(String namaPelanggan, boolean isMember, String kodePromo) {
@@ -26,22 +27,40 @@ public class Kafe08 {
         System.out.println("Silakan pilih menu yang Anda inginkan.");
     }
 
-    public static int hitungTotalHarga(int pilihanMenu, int banyakItem){
-        int[] hargaItems = {15000, 20000, 220000, 12000, 10000, 180000};
+    public static double hitungTotalHarga(int pilihanMenu, int banyakItem, String kodePromo) {
+        int[] hargaItems = { 15000, 20000, 220000, 12000, 10000, 180000 };
 
-        int hargaTotal = hargaItems[pilihanMenu - 1] * banyakItem;
+        double diskon;
+        switch (kodePromo.toUpperCase()) { // untuk mengubah semua huruf menjadi besar
+            case "DISKON50":
+                diskon = 0.5;
+                break;
+            case "DISKON30":
+                diskon = 0.3;
+                break;
+            default:
+                diskon = 0;
+                break;
+        }
+
+        double hargaTotal = hargaItems[pilihanMenu - 1] * banyakItem;
+        hargaTotal = hargaTotal - (hargaTotal * diskon);
         return hargaTotal;
     }
 
     public static void main(String[] args) {
+        Menu("t", true, "diskon30");
         Scanner sc = new Scanner(System.in);
         System.out.print("\nMasukkan nomor menu yang ingin Anda pesan: ");
         int pilihanMenu = sc.nextInt();
         System.out.print("Masukkan jumlah item yang ingin dipesan: ");
         int banyakItem = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Masukkan kode promo: ");
+        String kodePromo = sc.nextLine();
 
-        int totalHarga = hitungTotalHarga(pilihanMenu, banyakItem);
+        double totalHarga = hitungTotalHarga(pilihanMenu, banyakItem, kodePromo);
 
-        System.out.println("Total harga untuk pesanan Anda: Rp " + totalHarga);
+        System.out.println("Total harga untuk pesanan Anda: Rp " + (int)totalHarga);
     }
 }
