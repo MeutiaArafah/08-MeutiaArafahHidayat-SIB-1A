@@ -23,11 +23,11 @@ public class Kafe08 {
         System.out.println("4. Teh Tarik - Rp 12,000");
         System.out.println("5. Roti Bakar - Rp 10,000");
         System.out.println("6. Mie Goreng - Rp 18,000");
-        System.out.println("===========================");
+        System.out.println("======================================");
         System.out.println("Silakan pilih menu yang Anda inginkan.");
     }
 
-    public static double hitungTotalHarga(int pilihanMenu, int banyakItem, String kodePromo) {
+    public static double hitungTotalHarga(int[][] pesan, String kodePromo) {
         int[] hargaItems = { 15000, 20000, 220000, 12000, 10000, 180000 };
 
         double diskon;
@@ -43,24 +43,54 @@ public class Kafe08 {
                 break;
         }
 
-        double hargaTotal = hargaItems[pilihanMenu - 1] * banyakItem;
+        double hargaTotal = 0;
+        for(int i = 0; i < pesan.length; i++){
+            int nomorMenu = pesan[i][0];
+            int jumlahItem = pesan[i][1];
+            hargaTotal += hargaItems[nomorMenu - 1] * jumlahItem;
+        }
         hargaTotal = hargaTotal - (hargaTotal * diskon);
         return hargaTotal;
+    }
+
+    public static int[][] pesanMenu(Scanner sc, int jmlMenu) {
+       int[][] pesan = new int[jmlMenu][2]; // => kolom nya 2 fkarena berisi 2 kolom (nama menu, banyaknya menu itu)
+
+        for (int i = 0; i < jmlMenu; i++) {
+            System.out.print("\nMasukkan nomor menu ke-" + (i+1) + " : ");
+            pesan[i][0] = sc.nextInt();
+            System.out.print("Masukkan jumlah item menu ke:" + (i+1) + " : ");
+            pesan[i][1] = sc.nextInt();
+
+        }
+        System.out.println("======================================");
+        System.out.println("Daftar menu yang dipilih: ");
+        for (int i = 0; i< jmlMenu; i++) {
+            System.out.println("Menu ke-" + (i + 1) + " : " + pesan[i][0] + " sebanyak " + pesan[i][1]);
+        }
+        return pesan;
     }
 
     public static void main(String[] args) {
         Menu("t", true, "diskon30");
         Scanner sc = new Scanner(System.in);
-        System.out.print("\nMasukkan nomor menu yang ingin Anda pesan: ");
-        int pilihanMenu = sc.nextInt();
-        System.out.print("Masukkan jumlah item yang ingin dipesan: ");
-        int banyakItem = sc.nextInt();
+
+        // mengambil banyaknya menu yang ingin dipesan
+        System.out.print("Masukkan banyak jenis menu yang akan dipesan: ");
+        int jmlMenu = sc.nextInt();
+        // pesanMenu(sc, jmlMenu);
+
+        // System.out.print("Masukkan jumlah item yang ingin dipesan: ");
+        // int banyakItem = sc.nextInt();
+        
+        int[][] pesan = pesanMenu(sc, jmlMenu);
         sc.nextLine();
         System.out.print("Masukkan kode promo: ");
         String kodePromo = sc.nextLine();
 
-        double totalHarga = hitungTotalHarga(pilihanMenu, banyakItem, kodePromo);
+        double totalHarga = hitungTotalHarga(pesan, kodePromo);
 
-        System.out.println("Total harga untuk pesanan Anda: Rp " + (int)totalHarga);
+        System.out.println("Total harga untuk pesanan Anda: Rp " +  totalHarga);
+
     }
 }
