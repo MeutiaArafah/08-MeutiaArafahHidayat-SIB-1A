@@ -19,7 +19,6 @@ public class tugasRekrusif {
             System.out.print("Masukkan angka ke-" + (i) + ": ");
             int angka = sc.nextInt();
             total += angka;
-            
         }
         return total;
     }
